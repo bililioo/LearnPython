@@ -55,8 +55,23 @@ conn.close()
 
 def get_score_in(low, high):
     # ' 返回指定分数区间的名字，按分数从低到高排序 '
-    pass
-    
+    try:
+        conn = sqlite3.connect(db_file)
+        cursor = conn.cursor()
+        cursor.execute('select * from user where score between ? and ? order by score ASC', (str(low), str(high)))
+
+        values = cursor.fetchall()
+        print([x[1] for x in values])
+
+        return [x[1] for x in values]
+
+    except Exception as identifier:
+        print(identifier)
+    finally:
+        cursor.close()
+        conn.close()
+
+
 # 测试:
 assert get_score_in(80, 95) == ['Adam'], get_score_in(80, 95)
 assert get_score_in(60, 80) == ['Bart', 'Lisa'], get_score_in(60, 80)
