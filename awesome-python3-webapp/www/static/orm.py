@@ -14,7 +14,7 @@ async def create_pool(loop, **kw):
         host=kw.get('host', 'localhost'),
         port=kw.get('port', 3306),
         user=kw['user'],
-        password=kw['password'],
+        pwd=kw['pwd'],
         db=kw['db'],
         charset=kw.get('charset', 'utf8'),
         autocommit=kw.get('autocommit', True),
@@ -22,6 +22,7 @@ async def create_pool(loop, **kw):
         minsize=kw.get('minsize', 1),
         loop=loop
     )
+    print(kw.get('host', 'localhost'), kw.get('port', 3306))
 
 async def select(sql, args, size=None):
     log(sql, args)
