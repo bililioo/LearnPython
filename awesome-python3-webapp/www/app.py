@@ -6,9 +6,15 @@ import asyncio, os, json, time
 import aiomysql
 from datetime import datetime
 from aiohttp import web
+from models import User
 
-
-def index(request):
+# @get('/')
+async def index(request):
+    # users = await User.findAll()
+    # return {
+    #     '__template__': 'test.html',
+    #     'users': users
+    # }
     return web.Response(body=b'<h1>Awesome</h1>', content_type='text/html')
 
 async def init(loop):
